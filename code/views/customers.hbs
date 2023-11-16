@@ -1,0 +1,170 @@
+<!--
+    // Citation
+    // Date: 5/24/23
+    // Referenced HTML from OSU CS340 NodeJS Starter Guide (Steps 4-8)
+    // Table, Forms, variable names adjusted to match all attributes of our project
+    // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+    // Citation for this.parentElement.parentElement 
+    // Source URL https://www.youtube.com/watch?v=-rNQeJi3Wp4 
+-->
+
+
+<title>Customers</title>
+<header>Customers</header>
+<main>
+    <section>
+        <article>
+            {{!-- Create a table --}}
+            <table id="customer-table">
+
+                {{!-- Header section --}}
+                <thead>
+
+                    {{!-- For just the first row, we print each key of the row object as a header cell so we
+                    know what each column means when the page renders --}}
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Address Line 1</th>
+                        <th>Address Line 2</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>ZIP Code</th>
+                    </tr>
+                </thead>
+
+                {{!-- Body section --}}
+                <tbody>
+
+                    {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                    {{#each data}}
+                    <tr data-value={{this.customer_id}}>
+                        <td>{{this.customer_id}}</td>
+                        <td>{{this.first_name}}</td>
+                        <td>{{this.last_name}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.phone_number}}</td>
+                        <td>{{this.address_line_1}}</td>
+                        <td>{{this.address_line_2}}</td>
+                        <td>{{this.city}}</td>
+                        <td>{{this.state}}</td>
+                        <td>{{this.zipcode}}</td>
+                        <td><button onclick="autofillForm(this.parentElement.parentElement.rowIndex)">Populate Update Form</button></td>
+                        <td><button onclick="return confirmDelete() && deleteCustomer({{this.customer_id}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <script src="./js/delete_customer.js"></script>
+
+            <form id="add-customer-form-ajax" onsubmit="return confirmAdd()">
+                <fieldset>
+                    <legend>Add Customer</legend>
+
+                    <p>
+                        <label for="input-customer-first-name">First Name:</label> <input type="text"
+                            name="input-customer-first-name" id="input-customer-first-name" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-last-name">Last Name:</label> <input type="text"
+                            name="input-customer-last-name" id="input-customer-last-name" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-email">Email:</label> <input type="email" name="input-customer-email"
+                            id="input-customer-email" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-phone-number">Phone Number:</label> <input type="text"
+                            name="input-customer-phone-number" id="input-customer-phone-number" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-address-line-1">Address Line 1:</label> <input type="text"
+                            name="input-customer-address-line-1" id="input-customer-address-line-1" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-address-line-2">Address Line 2:</label> <input type="text"
+                            name="input-customer-address-line-2" id="input-customer-address-line-2"> (Optional)
+                    </p>
+                    <p>
+                        <label for="input-customer-city">City:</label> <input type="text" name="input-customer-city"
+                            id="input-customer-city" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-state">State:</label> <input type="text" name="input-customer-state"
+                            id="input-customer-state" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-zipcode">Zipcode:</label> <input type="text"
+                            name="input-customer-zipcode" id="input-customer-zipcode" required>
+                    </p>
+
+                    <input type="submit" value="Add Customer">
+                </fieldset>
+            </form>
+
+            <script src="./js/add_customer.js"></script>
+
+
+            <form id="update-customer-form-ajax" onsubmit="return confirmUpdate()">
+                <fieldset>
+                    <legend>Update Customer</legend>
+                    <p>
+                        <label for="input-customer-id-update">Customer ID: </label>
+                        <select name="input-customer-id-update" id="mySelect" required>
+                            <option value="">Select Customer ID</option>
+                            {{#each data}}
+                            <option value="{{this.customer_id}}">{{this.customer_id}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-customer-first-name-update">First Name:</label> <input type="text"
+                            name="input-customer-first-name-update" id="input-customer-first-name-update" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-last-name-update">Last Name:</label> <input type="text"
+                            name="input-customer-last-name-update" id="input-customer-last-name-update" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-email-update">Email:</label> <input type="email"
+                            name="input-customer-email-update" id="input-customer-email-update" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-phone-number-update">Phone Number:</label> <input type="text"
+                            name="input-customer-phone-number-update" id="input-customer-phone-number-update" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-address-line-1-update">Address Line 1:</label> <input type="text"
+                            name="input-customer-address-line-1-update" id="input-customer-address-line-1-update"
+                            required>
+                    </p>
+                    <p>
+                        <label for="input-customer-address-line-2-update">Address Line 2:</label> <input type="text"
+                            name="input-customer-address-line-2-update" id="input-customer-address-line-2-update">
+                        (Optional)
+                    </p>
+                    <p>
+                        <label for="input-customer-city-update">City:</label> <input type="text"
+                            name="input-customer-city-update" id="input-customer-city-update" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-state-update">State:</label> <input type="text"
+                            name="input-customer-state-update" id="input-customer-state-update" required>
+                    </p>
+                    <p>
+                        <label for="input-customer-zipcode-update">Zipcode:</label> <input type="text"
+                            name="input-customer-zipcode-update" id="input-customer-zipcode-update" required>
+                    </p>
+
+                    <input type="submit" value="Update Customer">
+                </fieldset>
+            </form>
+
+            <script src="./js/update_customer.js"></script>
+        </article>
+    </section>
+</main>

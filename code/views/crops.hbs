@@ -1,0 +1,152 @@
+<!--
+    // Citation
+    // Date: 5/24/23
+    // Referenced HTML from OSU CS340 NodeJS Starter Guide (Steps 4-8)
+    // Table, Forms, variable names adjusted to match all attributes of our project
+    // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+    // Citation for this.parentElement.parentElement 
+    // Source URL https://www.youtube.com/watch?v=-rNQeJi3Wp4 
+-->
+
+
+<title>Crops</title>
+<header>Crops</header>
+
+<main>
+    <section>
+        <article>
+            <table id="crops-table">
+
+                {{!-- Header section --}}
+                <thead>
+
+                    {{!-- For just the first row, we print each key of the row object as a header cell so we
+                    know what each column means when the page renders --}}
+                    <tr>
+                        <th>Crop ID</th>
+                        <th>Farm Name</th>
+                        <th>Crop Name</th>
+                        <th>Unit Cost</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Date Harvested</th>
+                        <th>Sell By Date</th>
+                    </tr>
+                </thead>
+
+                {{!-- Body section --}}
+                <tbody>
+
+                    {{!-- For each row, print attributes     in order --}}
+                    {{#each data}}
+                    <tr data-value={{this.crop_id}}>
+                        <td>{{this.crop_id}}</td>
+                        <td>{{this.farm_name}}</td>
+                        <td>{{this.crop_name}}</td>
+                        <td>{{this.unit_cost}}</td>
+                        <td>{{this.unit_price}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{this.date_harvested}}</td>
+                        <td>{{this.date_sell_by}}</td>
+                        <td><button onclick="autofillForm(this.parentElement.parentElement.rowIndex)">Populate Update Form</button></td>
+                        <td><button onclick="return confirmDelete() && deleteCrop({{this.crop_id}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_crop.js"></script>
+
+            <form id="add-crop-form-ajax" onsubmit="return confirmAdd()">
+                <fieldset>
+                    <legend>Add Crop</legend>
+                    <p>
+                        <label for="input-farm-id">Farm Name:</label> <select name="input-farm-id" id="input-farm-id"
+                            required>
+                            <option value="">Select a Farm Name</option>
+                            {{#each farms}}
+                            <option value="{{this.farm_id}}">{{this.farm_name}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-crop-name">Crop Name:</label> <input type="text" name="input-crop-name"
+                            id="input-crop-name" required>
+                    </p>
+                    <p>
+                        <label for="input-unit-cost">Unit Cost:</label> <input type="number" min="0" step="0.01" name="input-unit-cost"
+                            id="input-unit-cost" required>
+                    </p>
+                    <p>
+                        <label for="input-unit-price">Unit Price:</label> <input type="number" min="0" step="0.01" name="input-unit-price"
+                            id="input-unit-price" required>
+                    </p>
+                    <p>
+                        <label for="input-quantity">Quantity:</label> <input type="number" min="0" name="input-quantity"
+                            id="input-quantity" required>
+                    </p>
+                    <p>
+                        <label for="input-date-harvested">Date Harvested:</label> <input type="date"
+                            name="input-date-harvested" id="input-date-harvested" required>
+                    </p>
+                    <p>
+                        <label for="input-date-sell-by">Date Sell By:</label> <input type="date"
+                            name="input-date-sell-by" id="input-date-sell-by" required>
+                    </p>
+                    <input type="submit" value="Add Crop">
+                </fieldset>
+            </form>
+            <script src="./js/add_crop.js"></script>
+
+            <form id="update-crop-form-ajax" onsumbit="return confirmUpdate()">
+                <fieldset>
+                    <legend>Update Crop</legend>
+                    <p>
+                        <label for="input-crop-id-update">Crop ID:</label> <select name="input-crop-id-update"
+                            id="mySelect" required>
+                            <option value="">Select a Crop ID</option>
+                            {{#each data}}
+                            <option value="{{this.crop_id}}">{{this.crop_id}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-farm-id-update">Farm Name:</label> <select name="input-farm-id-update"
+                            id="input-farm-id-update" required>
+                            <option value="">Select a Farm Name</option>
+                            {{#each farms}}
+                            <option value="{{this.farm_id}}">{{this.farm_name}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="input-crop-name-update">Crop Name:</label> <input type="text"
+                            name="input-crop-name-update" id="input-crop-name-update" required>
+                    </p>
+                    <p>
+                        <label for="input-unit-cost-update">Unit Cost:</label> <input type="number" min="0" step="0.01"
+                            name="input-unit-cost-update" id="input-unit-cost-update" required>
+                    </p>
+                    <p>
+                        <label for="input-unit-price-update">Unit Price:</label> <input type="number" min="0" step="0.01"
+                            name="input-unit-price-update" id="input-unit-price-update" required>
+                    </p>
+                    <p>
+                        <label for="input-quantity-update">Quantity:</label> <input type="number" min="0"
+                            name="input-quantity-update" id="input-quantity-update" required>
+                    </p>
+                    <p>
+                        <label for="input-date-harvested-update">Harvest Date:</label> <input type="date"
+                            name="input-date-harvested-update" id="input-date-harvested-update" required>
+                    </p>
+                    <p>
+                        <label for="input-date-sell-by-update">Sell By Date:</label> <input type="date"
+                            name="input-date-sell-by-update" id="input-date-sell-by-update" required>
+                    </p>
+                    <input type="submit" value="Update Crop">
+                </fieldset>
+            </form>
+            <script src="./js/update_crop.js"></script>
+        </article>
+    </section>
+</main>

@@ -1,0 +1,65 @@
+body {
+    background-color: beige;
+    margin: 25px;
+    padding: 25px;
+}
+
+
+/* Header */
+header {
+    color: burlywood;
+    background-color: royalblue;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    padding-left: 10px;
+    border: 10px solid;
+    font-size: 36px;
+}
+
+/* Navigation */
+
+nav a {
+    color: blue;
+    text-decoration: none;
+    border: 1px solid grey;
+    border-radius: 5px 5px 5px 5px;
+    font-size: 1.5em;
+    line-height: 1;
+    padding: 5px;
+
+
+}
+
+/* Table */
+fieldset {
+    margin-top: 25px;
+}
+
+table {
+    table-layout: fixed;
+    text-align: left;
+    border-collapse: collapse;
+    border: 3px solid black;
+    margin-top: 25px;
+}
+
+thead {
+    border: solid black;
+}
+
+th {
+    padding: 10px;
+}
+
+td {
+    padding: 20px;
+    border: solid black;
+}
+
+caption {
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none
+}

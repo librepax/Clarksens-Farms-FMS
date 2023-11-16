@@ -1,0 +1,143 @@
+<!--
+    // Citation
+    // Date: 5/24/23
+    // Referenced HTML from OSU CS340 NodeJS Starter Guide (Steps 4-8)
+    // Table, Forms, variable names adjusted to match all attributes of our project
+    // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+    // Citation for this.parentElement.parentElement 
+    // Source URL https://www.youtube.com/watch?v=-rNQeJi3Wp4 
+-->
+
+
+<title>Equipments</title>
+<header>Equipments</header>
+<main>
+    <section>
+        <article>
+            {{!-- Create a table --}}
+            <table id="equipment-table">
+
+                {{!-- Header section --}}
+                <thead>
+
+                    <tr>
+                        <th>Equipment ID</th>
+                        <th>Farm Name</th>
+                        <th>Equipment Name</th>
+                        <th>Purchase Date</th>
+                        <th>Equipment Cost</th>
+                        <th>Equipment Value</th>
+                        <th>Maintenance Date</th>
+                    </tr>
+                </thead>
+
+                {{!-- Body section --}}
+                <tbody>
+
+                    {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                    {{#each data}}
+                    <tr data-value={{this.equipment_id}}>
+                        <td>{{this.equipment_id}}</td>
+                        <td>{{this.farm_name}}</td>
+                        <td>{{this.equipment_name}}</td>
+                        <td>{{this.purchase_date}}</td>
+                        <td>{{this.equipment_cost}}</td>
+                        <td>{{this.equipment_value}}</td>
+                        <td>{{this.maintenance_date}}</td>
+                        <td><button onclick="autofillForm(this.parentElement.parentElement.rowIndex)">Populate Update Form</button></td>
+                        <td><button onclick="return confirmDelete() && deleteEquipment({{this.equipment_id}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_equipment.js"></script>
+
+
+            <form id="add-equipment-form-ajax" onsubmit="return confirmAdd()">
+                <fieldset>
+                    <legend>Add Equipment</legend>
+                    <p>
+                        <label for="input-farm-id">Farm Name:</label><select name="input-farm-id" id="input-farm-id">
+                            <option value="">Select a Farm Name</option>
+                            {{#each farms}}
+                            <option value="{{this.farm_id}}">{{this.farm_name}}</option>
+                            {{/each}}
+                        </select> (Optional)
+                    </p>
+                    <p>
+                        <label for="input-equipment-name">Equipment Name:</label> <input type="text"
+                            name="input-equipment-name" id="input-equipment-name" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-purchase-date">Purchase Date:</label> <input type="date"
+                            name="input-equipment-purchase-date" id="input-equipment-purchase-date" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-cost">Equipment Cost:</label> <input type="number"
+                           step="0.01" min="0" name="input-equipment-cost" id="input-equipment-cost" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-value">Equipment Value:</label> <input type="number"
+                            step="0.01" min="0" name="input-equipment-value" id="input-equipment-value" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-maintenance-date">Maintenance Date:</label> <input type="date"
+                            name="input-equipment-maintenance-date" id="input-equipment-maintenance-date"> (Optional)
+                    </p>
+
+                    <input type="submit" value="Add Equipment">
+                </fieldset>
+            </form>
+            <script src="./js/add_equipment.js"></script>
+
+            <form id="update-equipment-form-ajax" onsubmit="return confirmUpdate()">
+                <fieldset>
+                    <legend>Update Equipment</legend>
+                    <p>
+                        <label for="input-equipment-id-update">Equipment ID: </label>
+                        <select name="input-equipment-id-update" id="mySelect" required>
+                            <option value="">Select Equipment ID</option>
+                            {{#each data}}
+                            <option value="{{this.equipment_id}}">{{this.equipment_id}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-equipment-farm-id-update">Farm Name: </label>
+                        <select name="input-equipment-farm-id-update" id="input-equipment-farm-id-update">
+                            <option value="test">Select Farm Name</option>
+                            {{#each farms}}
+                            <option value="{{this.farm_id}}">{{this.farm_name}}</option>
+                            {{/each}}
+                        </select> (Optional)
+                    </p>
+                    <p>
+                        <label for="input-equipment-first-name-update">Equipment Name:</label> <input type="text"
+                            name="input-equipment-name-update" id="input-equipment-name-update" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-purchase-date-update">Purchase Date:</label> <input type="date"
+                            name="input-equipment-purchase-date-update" id="input-equipment-purchase-date-update"
+                            required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-cost-update">Equipment Cost:</label> <input type="number"
+                            step="0.01" min="0" name="input-equipment-cost-update" id="input-equipment-cost-update" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-value-update">Equipment Value:</label> <input type="number"
+                            step="0.01" min="0" name="input-equipment-value-update" id="input-equipment-value-update" required>
+                    </p>
+                    <p>
+                        <label for="input-equipment-maintenance-date-update">Maintenance Date:</label> <input
+                            type="date" name="input-equipment-maintenance-date-update"
+                            id="input-equipment-maintenance-date-update"> (Optional)
+                    </p>
+
+                    <input type="submit" value="Update Equipment">
+                </fieldset>
+            </form>
+            <script src="./js/update_equipment.js"></script>
+        </article>
+    </section>
+</main>

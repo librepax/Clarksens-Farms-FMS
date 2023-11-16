@@ -1,0 +1,143 @@
+<!--
+    // Citation
+    // Date: 5/24/23
+    // Referenced HTML from OSU CS340 NodeJS Starter Guide (Steps 4-8)
+    // Table, Forms, variable names adjusted to match all attributes of our project
+    // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+    // Citation for this.parentElement.parentElement 
+    // Source URL https://www.youtube.com/watch?v=-rNQeJi3Wp4 
+-->
+
+
+<title>Orders</title>
+<header>Orders</header>
+
+<main>
+    <section>
+        <article>
+            <table id="order-table">
+
+                {{!-- Header section --}}
+                <thead>
+
+                    {{!-- For just the first row, we print each key of the row object as a header cell so we
+                    know what each column means when the page renders --}}
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Email</th>
+                        <th>Order Date</th>
+                        <th>Order Total</th>
+                        <th>Paid in Full?</th>
+                        <th>Payment Method</th>
+                    </tr>
+                </thead>
+
+                {{!-- Body section --}}
+                <tbody>
+
+                    {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+                    {{#each data}}
+                    <tr data-value={{this.order_id}}>
+                        <td class="hidden">{{this.order_id}}</td>
+                        <td>{{this.order_ref_number}}</td>
+                        <td class="hidden">{{this.customer_id}}</td>
+                        <td>{{this.customer_email}}</td>
+                        <td>{{this.order_date}}</td>
+                        <td>{{this.order_total}}</td>
+                        <td>{{#if this.is_paid_in_full}}Yes{{else}}No{{/if}}</td>
+                        <td>{{this.payment_method}}</td>
+                        <td><button onclick="autofillForm(this.parentElement.parentElement.rowIndex)">Populate Update Form</button></td>
+                        <td><button onclick="return confirmDelete() && deleteOrder({{this.order_id}})">Delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+            <script src="./js/delete_order.js"></script>
+
+            <form id="add-order-form-ajax" onsubmit="return confirmAdd()">
+                <fieldset>
+                    <legend>Add Order</legend>
+                    <p>
+                        <label for="input-customer-id">Customer Email:</label> <select name="input-customer-id"
+                            id="input-customer-id" required>
+                            <option value="">Select a Customer Email</option>
+                            {{#each customers}}
+                            <option value="{{this.customer_id}}">{{this.email}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-order-date">Order Date:</label> <input type="date" name="input-order-date"
+                            id="input-order-date" required>
+                    </p>
+                    <p>
+                        <label for="input-order-total">Order Total:</label> <input type="number" min="0" step="0.01" name="input-order-total"
+                            id="input-order-total" required>
+                    </p>
+                    <p>
+                        Is it Paid in Full:
+                        <label for="not-paid">No </label> <input type="radio" name="input-is-paid-in-full" id="not-paid"
+                            value="0" required>
+                        <label for="paid">Yes</label> <input type="radio" name="input-is-paid-in-full" id="paid"
+                            value="1">
+                    </p>
+                    <p>
+                        <label for="input-payment-method">Payment Method:</label> <input type="text"
+                            name="input-payment-method" id="input-payment-method" required>
+                    </p>
+
+                    <input type="submit" value="Add Order">
+                </fieldset>
+            </form>
+            <script src="./js/add_order.js"></script>
+
+            <form id="update-order-form-ajax" onsubmit="return confirmUpdate()">
+                <fieldset>
+                    <legend>Update Order</legend>
+                    <p>
+                        <label for="input-order-id-update">Order ID: </label>
+                        <select name="input-order-id-update" id="mySelect" required>
+                            <option value="">Select Order ID</option>
+                            {{#each data}}
+                            <option value="{{this.order_id}}">{{this.order_ref_number}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-order-customer-id-update">Customer Email: </label>
+                        <select name="input-order-customer-id-update" id="input-order-customer-id-update" required>
+                            <option value="">Select Customer Email</option>
+                            {{#each customers}}
+                            <option value="{{this.customer_id}}">{{this.email}}</option>
+                            {{/each}}
+                        </select>
+                    </p>
+                    <p>
+                        <label for="input-order-date-update">Order Date:</label> <input type="date"
+                            name="input-order-date-update" id="input-order-date-update" required>
+                    </p>
+                    <p>
+                        <label for="input-order-total-update">Order Total:</label> <input type="number" min="0" step="0.01"
+                            name="input-order-total-update" id="input-order-total-update" required>
+                    </p>
+                    <p>
+                        Is it Paid in Full:
+                        <label for="not-paid-update">No </label> <input type="radio" name="input-is-paid-in-full-update"
+                            id="not-paid-update" value="0" required>
+                        <label for="paid-update">Yes</label> <input type="radio" name="input-is-paid-in-full-update"
+                            id="paid-update" value="1">
+                    </p>
+                    <p>
+                        <label for="input-order-payment-method-update">Payment Method:</label> <input type="text"
+                            name="input-order-payment-method-update" id="input-order-payment-method-update" required>
+                    </p>
+
+
+                    <input type="submit" value="Update Order">
+                </fieldset>
+            </form>
+            <script src="./js/update_order.js"></script>
+        </article>
+    </section>
+</main>
