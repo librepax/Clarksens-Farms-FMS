@@ -150,10 +150,13 @@ SCHEMA DIAGRAM
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/e8ac914b-f8c7-4dfe-8cb1-d7d7960f9ee4)
 
 UI SCREENSHOTS
+
 Homepage
+
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/69b20194-baab-4ddf-b532-8fba8986fc82)
 
 Create and Read Farms Entity
+
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/614ab19d-0515-49dc-8e26-e0ec4cb86af7)
 
 Create, Read, Update, Delete Equipments Entity
@@ -164,14 +167,17 @@ Create, Read, Update, Delete Equipments Entity
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/7d1c754a-8f42-45b8-8cfe-5f53e0bc01fc)
 
 Create/Read/Update/Delete Crops Entity
+
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/acab5a61-d5d1-4eb8-826f-08b2c19fbad7)
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/f5401c6e-4875-46e0-8265-c982581066f5)
 
 Create/Read/Update/Delete Customers Entity
+
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/349503c0-6a89-46e8-b976-a6871eb426e0)
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/051b528c-cbde-4647-af7e-ee5458ab6597)
 
 Create/Read/Update/Delete Orders Entity
+
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/7d88ba71-8d0d-440d-bc13-26e05f23400b)
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/38b32f1d-237c-40bf-a3fe-9c2daba228e7)
 
@@ -179,5 +185,6 @@ Create/Read/Update/Delete Orders and Crops Details Entity
 
 This is an intersection table of Orders and Crops, and we have implemented update and delete
 for these M:N relationships.
+
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/00aba1b5-0c27-45d8-82da-3ee0da011ce6)
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/f80f2265-e25b-479e-8f73-02f79f3be501)
