@@ -2,6 +2,7 @@
 Farm Management System for Clarksen's Farms
 
 EXECUTIVE SUMMARY
+
 This project intends to be the one-stop-shop database manager for all prospective farmers
 yearning to keep track of their farms, equipment, crops, and every data related to sales of its
 products, such as customer and order information. The conception of this project is greatly
