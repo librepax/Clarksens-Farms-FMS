@@ -49,10 +49,10 @@ DATABASE OUTLINE
   - Attributes:
     - equipment_id, PK, INT, auto_increment, not NULL
     - farm_id, FK, INT, not NULL
-  - purchase_date, DATE, not NULL
-  - equipment_cost, DECIMAL(10, 2), not NULL
-  - equipment_value, DECIMAL(10, 2), not NULL
-  - maintenance_date, DATE
+    - purchase_date, DATE, not NULL
+    - equipment_cost, DECIMAL(10, 2), not NULL
+    - equipment_value, DECIMAL(10, 2), not NULL
+    - maintenance_date, DATE
   - Relationships:
     - M:1 with Farms. Many equipment may be used to maintain one farm, but
       one equipment will only belong to one farm.
@@ -157,6 +157,7 @@ Create and Read Farms Entity
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/614ab19d-0515-49dc-8e26-e0ec4cb86af7)
 
 Create, Read, Update, Delete Equipments Entity
+
 (Farm Name is tied to farm_id per DML SQL and is a NULLable relationship)
 
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/0eea92b6-9516-46e5-bf41-a6dac4314690)
@@ -175,6 +176,7 @@ Create/Read/Update/Delete Orders Entity
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/38b32f1d-237c-40bf-a3fe-9c2daba228e7)
 
 Create/Read/Update/Delete Orders and Crops Details Entity
+
 This is an intersection table of Orders and Crops, and we have implemented update and delete
 for these M:N relationships.
 ![image](https://github.com/librepax/Clarksens-Farms-FMS/assets/114368114/00aba1b5-0c27-45d8-82da-3ee0da011ce6)
